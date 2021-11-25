@@ -61,7 +61,6 @@ margin: 0;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 50%;
     color: lightgray;
 }
 
@@ -71,4 +70,8 @@ margin: 0;
 
 .arrow-down {
      bottom: 0;
+}
+
+.enabled {
+    color: red;
 }
