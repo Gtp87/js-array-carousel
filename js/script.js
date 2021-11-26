@@ -47,30 +47,35 @@ for (let i = 0; i < items.length; i++) {
 }
 
 const active = document.querySelectorAll('.wide-img');
-const bright = document.querySelectorAll('.thumb img');
+const bright = document.querySelectorAll('.thumb');
 
 active[0].classList.add("active", "first");
 active[active.length - 1].classList.add("last");
 bright[0].classList.add("bright", "first");
 bright[bright.length - 1].classList.add("last");
 
+// console.log(active, bright);
+
 const arrowDown = document.querySelector('.arrow-down');
 
 arrowDown.addEventListener("click", function () {
 
-    let find = false;
-    const brightThumb = document.querySelector(".thumb img.bright");
+    
+    const brightThumb = document.querySelector(".container-thumbs .thumb.bright");
     const activeWideImg = document.querySelector(".wide-img.active");
 
-    for (let i = 0; i < bright.length; i++) {
+    let brightThumbClass = brightThumb.classList;
+    let find = false;
 
-        if (brightThumb.classList[i] == "last") {
-           find = true
+    for (let i = 0; i < brightThumbClass.length; i++) {
+
+        if (brightThumbClass[i] == "last") {
+           find = true;
         }
     }
 
     if (find == false) {
-        brightThumb.classList.remove("bright");
+        brightThumbClass.remove("bright");
         brightThumb.nextElementSibling.classList.add("bright");
 
         activeWideImg.classList.remove("active");
