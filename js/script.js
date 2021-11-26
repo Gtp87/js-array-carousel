@@ -13,7 +13,7 @@ const title = [
     'Gran Bretagna',
     'Germania',
     'Paradise'
-];
+]
 
 const text = [
     'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.',
@@ -21,49 +21,67 @@ const text = [
     'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
     'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
     'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,'
-];
+]
 
-// seleziono il container
-const containerImg = document.querySelector('.container-img');
+const containerImg = document.querySelector('.container-left');
+const containerThumbs = document.querySelector('.container-thumbs');
 
-// ciclo per le immagini dell'array, le inserisco tutte display none
-for (let index = 0; index < items.length; index++) {
-    let image = `<img src="${items[index]}" alt="">`;
 
-    containerImg.innerHTML += image;
+
+for (let i = 0; i < items.length; i++) {
+   let thumb = 
+   `<div class="thumb">
+        <img src=${items[i]} alt="">
+    </div>`;
+    containerThumbs.innerHTML += thumb;
+    
+    let wideImg = 
+    `<div class="wide-img">
+        <img src=${items[i]} alt="">
+        <div class="caption">
+            <h1>${title[i]}</h1>
+            <h2>${text[i]}</h2>
+        </div>
+    </div>`;
+    containerImg.innerHTML +=  wideImg;
 }
 
-// lista nodi
-const imageDom = document.querySelectorAll('.container-img img');
-imageDom[0].classList.add('first', 'active'),
-imageDom[imageDom.length - 1].classList.add('last');
+const active = document.querySelectorAll('.wide-img');
+const bright = document.querySelectorAll('.thumb img');
 
-// EVENTO FRECCIA GIU'
-const downButton = document.querySelector('.arrow-down');
+active[0].classList.add("active", "first");
+active[active.length - 1].classList.add("last");
+bright[0].classList.add("bright", "first");
+bright[bright.length - 1].classList.add("last");
 
-downButton.addEventListener('click', function(){
-    const imageActive = document.querySelector('.active');
-    let classes = imageActive.classList;
-    // variabile per uscire dal ciclo
-    let last = false; 
+const arrowDown = document.querySelector('.arrow-down');
 
-  
-    for (let index = 0; index < classes.length; index++) {
-        if (classes[index] == 'last') {
-           last = true;
-       }    
+arrowDown.addEventListener("click", function () {
+
+    let find = false;
+    const brightThumb = document.querySelector(".thumb img.bright");
+    const activeWideImg = document.querySelector(".wide-img.active");
+
+    for (let i = 0; i < bright.length; i++) {
+
+        if (brightThumb.classList[i] == "last") {
+           find = true
+        }
     }
 
-    // immagina attiva ha anche last?
-        // se non contiene last
-    if (last == false) {
-        imageActive.classList.remove('active');
-        // vado ad elemento successivo
-        const imageNext = imageActive.nextElementSibling;
-        imageNext.classList.add('active');
-    
+    if (find == false) {
+        brightThumb.classList.remove("bright");
+        brightThumb.nextElementSibling.classList.add("bright");
+
+        activeWideImg.classList.remove("active");
+        activeWideImg.nextElementSibling.classList.add("active");
+
     } else {
-        downButton.classList.remove('enabled');
-        
-    } 
+        active[0].classList.add("active");
+        bright[0].classList.add("bright");
+        active[active.length - 1].classList.remove("active");
+        bright[bright.length - 1].classList.remove("bright");
+    }
+
+
 })
