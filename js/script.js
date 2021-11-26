@@ -1,3 +1,21 @@
+// Dati tre array contenenti:
+// - una lista ordinata di 5 immagini,
+// - una lista ordinata dei relativi 5 luoghi e
+// - una lista di 5 news,
+// creare un carosello come nella foto allegata.
+// MILESTONE 1
+// Per prima cosa, creiamo il markup statico: costruiamo il container e inseriamo l’immagine grande a sinistra e le thumbnails sulla destra in modo da poter stilare lo slider; avremo così la struttura base e gli stili pronti per poterci poi concentrare solamente sull’aspetto logico.
+//     MILESTONE 2
+// Adesso rimuoviamo tutto il markup statico e inseriamo le immagini dinamicamente servendoci dell’array fornito e un semplice ciclo for che concatena un template literal.Al termine di questa fase ci ritroveremo con lo stesso slider, ma costruito dinamicamente attraverso JavaScript.
+//     MILESTONE 3
+// Al click dell’utente sulle frecce verso l’alto o verso il basso, l’immagine attiva diventa visibile in formato grande a sinistra e nel suo angolo in basso a destra dovranno essere aggiunti i relativi:
+// - titolo e
+//     - testo.
+// Allo stesso tempo nelle miniature l’immagine attiva dovrà apparire in evidenza rispetto alle altre.
+//     BONUS:
+// Aggiungere il ciclo infinito del carosello.Ovvero se la miniatura attiva è la prima e l’utente clicca la freccia verso l’alto, la miniatura che deve attivarsi sarà l’ultima e viceversa per l’ultima miniatura se l’utente clicca la freccia verso il basso.
+
+
 const items = [
     'img/01.jpg',
     'img/02.jpg',
@@ -23,11 +41,12 @@ const text = [
     'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,'
 ]
 
+// dichiaro elementi html nei quali voglio che vengano creati i tag
 const containerImg = document.querySelector('.container-left');
 const containerThumbs = document.querySelector('.container-thumbs');
 
 
-
+// per ogni elemento di ogni array creo gli elementi che servono
 for (let i = 0; i < items.length; i++) {
    let thumb = 
    `<div class="thumb">
@@ -39,8 +58,8 @@ for (let i = 0; i < items.length; i++) {
     `<div class="wide-img">
         <img src=${items[i]} alt="">
         <div class="caption">
-            <h1>${title[i]}</h1>
-            <h2>${text[i]}</h2>
+            <h3>${title[i]}</h3>
+            <p>${text[i]}</p>
         </div>
     </div>`;
     containerImg.innerHTML +=  wideImg;
