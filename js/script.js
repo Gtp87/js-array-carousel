@@ -89,4 +89,39 @@ arrowDown.addEventListener("click", function () {
     }
 
 
-})
+});
+
+const arrowUp = document.querySelector('.arrow-up');
+
+arrowUp.addEventListener("click", function () {
+
+
+    const brightThumb = document.querySelector(".container-thumbs .thumb.bright");
+    const activeWideImg = document.querySelector(".wide-img.active");
+
+    let brightThumbClass = brightThumb.classList;
+    let find = false;
+
+    for (let i = 0; i < brightThumbClass.length; i++) {
+
+        if (brightThumbClass[i] == "first") {
+            find = true;
+        }
+    }
+
+    if (find == false) {
+        brightThumbClass.remove("bright");
+        brightThumb.previousElementSibling.classList.add("bright");
+
+        activeWideImg.classList.remove("active");
+        activeWideImg.previousElementSibling.classList.add("active");
+
+    } else {
+        active[0].classList.remove("active");
+        bright[0].classList.remove("bright");
+        active[active.length - 1].classList.add("active");
+        bright[bright.length - 1].classList.add("bright");
+    }
+
+
+});
